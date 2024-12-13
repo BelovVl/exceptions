@@ -10,25 +10,23 @@ public class Main {
 
         System.out.print("Введите логин: ");
         String login = scanner.nextLine();
-        try {
-            checkLogin(login);
-        } catch (WrongLoginException e) {
-            System.out.println(e.getMessage());
-        }
         System.out.print("Введите пароль: ");
         String password = scanner.nextLine();
         System.out.print("Повторите пароль: ");
         String confirmPassword = scanner.nextLine();
         try {
-            checkPasswords(password, confirmPassword);
-        } catch (WrongPasswordException e) {
+            checkLogin(login);checkPasswords (password, confirmPassword);
+            System.out.println("Пароль введен");
+        } catch (WrongLoginException |WrongPasswordException e) {
             System.out.println(e.getMessage());
+        }finally {
+            System.out.println("Отлично");
         }
 
     }
 
     public static void checkLogin(String login) throws WrongLoginException {
-        if (login.length() >= 20) {
+        if (login.length() > 20) {
             throw new WrongLoginException("Ошибка! Превышена длина логина.");
         }
 
